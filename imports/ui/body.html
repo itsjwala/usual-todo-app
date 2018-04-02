@@ -1,0 +1,36 @@
+<body>
+    <div id="container">
+        {{> heading}}
+        {{> AddTodo}}
+        {{> ListTodos}}
+    </div>
+
+
+</body>
+
+<template name="heading">
+    <div class="heading">
+        <h1>Todo List
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </h1>
+    </div>
+</template>
+<template name="AddTodo">
+    <input type="text" name="" value="" placeholder="Add New Todo">
+</template>
+
+<template name="ListTodos">
+    <ul>
+        {{#each read}}
+         {{>Todos}} 
+         {{/each }}
+    </ul>
+</template>
+
+<template name="Todos">
+<li>
+    <span class="delete">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+    </span>{{todo}}
+</li>
+</template>

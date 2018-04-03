@@ -28,9 +28,16 @@
 </template>
 
 <template name="Todos">
-<li class="{{#if created}} completed {{/if}}">
+<li id="{{_id}}">
     <span class="delete">
         <i class="fa fa-trash-o" aria-hidden="true"></i>
-    </span>{{task}}
+    </span>
+
+    <span class="content {{#if done}} completed {{/if}}">
+        {{task}}
+    </span>
+    <small>
+        {{createdOn}}
+    </small>
 </li>
 </template>

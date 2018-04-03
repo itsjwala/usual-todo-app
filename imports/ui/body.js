@@ -2,47 +2,45 @@ import "./body.html";
 import "./body.css"
 import { Template } from "meteor/templating";
 import { Todos } from "../api/db";
-const inputTodo = $("input[type='text']");
 
 Template.heading.events({
     'click div > h1 > i.fa-plus':function(e){
-        $("input[type='text']").slideToggle(300)
+        $("#todoText").slideToggle(300)
     }
 })
 Template.AddTodo.helpers({
-    add(todo){
-    Todos.insert({todo})           
-    }
+
 }) 
 Template.AddTodo.events({
 
-    'keypress input[type="text"]':function(e){
-        console.log(e)
-        "till the key pressed is enter"
+    'keypress #todoText':function(e){
+        // "till the key pressed is enter"
         if (event.which === 13) {
-            var todoText = inputTodo.val();
-            inputTodo.val("");
-            add(todoText);
+            
+            var todoText = $(e.target).val();
+            console.log(todoText)
+            $(e.target).val("");
+            
+            Todos.insert({task:todoText,done:false,createdOn:Date()})
         }
     }
 })
 Template.ListTodos.helpers({
 
     read() {
-        return Todos.find({});
+        return Todos.find({},{sort:{createdOn:-1}})
     }
 
 })
-Template.ListTodos.onCreated(function(){
-    console.log(this)
-})
+
 Template.ListTodos.events({
 
 'click ul > li':function(e){
+
 $(e.target).toggleClass("completed")
 
 },
-'click ul span':function(e){
+'click ul li span':function(e){
     $(e.target).parent().fadeOut(500, function () {
         $(this).remove();
     });
@@ -50,4 +48,7 @@ $(e.target).toggleClass("completed")
 }
 })
 
+Template.Todos.onCreated(function(){
+    console.log("ef")
+})
 

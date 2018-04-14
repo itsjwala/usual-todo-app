@@ -2,7 +2,7 @@
 learning Meteor using simple todo application and persistence using mongodb 
 
 ## Prerequisite
-> Have meteor installed from [here](meteor.com/)
+> Have meteor installed from [here](https://www.meteor.com/install)
 
 ## Installation
 ``` bash
